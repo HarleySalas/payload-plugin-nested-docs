@@ -1,11 +1,10 @@
+import { nestedDocs } from './../../src/plugin';
 import { buildConfig } from 'payload/config'
 import path from 'path'
 import Users from './collections/Users'
 import Examples from './collections/Examples'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import { samplePlugin } from '../../src/index'
-import sharp from 'sharp'
 
 export default buildConfig({
   secret: process.env.PAYLOAD_SECRET || '',
@@ -17,9 +16,10 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
-  plugins: [samplePlugin({ enabled: true })],
+  plugins: [nestedDocs({
+		collections: ["page"]
+	})],
   db: mongooseAdapter({
     url: process.env.DATABASE_URI || '',
   }),
-  sharp,
 })
