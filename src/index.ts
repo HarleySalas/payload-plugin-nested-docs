@@ -1,2 +1,3 @@
-export { samplePlugin } from './plugin'
-export type { PluginTypes } from './types'
+export { nestedDocs } from './plugin.js'
+export { createBreadcrumbsField } from './fields/breadcrumbs.js'
+export { createParentField } from './fields/parent.js'
